@@ -1,5 +1,7 @@
 package com.yuraima.quest;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,6 +11,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 
 public class MainQuestActivity extends AppCompatActivity {
 
@@ -21,18 +26,28 @@ public class MainQuestActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                addTask(view);
+            }
+        });
+
+        /* Sets onClickListener and onClick method for Add Quest Button */
+        Button addQuestBtn = (Button) findViewById(R.id.addQuestBtn);
+        addQuestBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addTask(view);
             }
         });
     }
 
-    public void addTask() {
+    public void addTask(View view) {
         Log.i(TAG, "Clicked Add");
+        Intent intent = new Intent(this, AddQuestActivity.class);
+        startActivity(intent);
     }
 
     @Override

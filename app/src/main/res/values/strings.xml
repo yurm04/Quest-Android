@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Quest</string>
     <string name="action_settings">Settings</string>
+    <string name="addQuestBtnText">Add Quest</string>
+    <string name="title_activity_add_quest">AddQuestActivity</string>
+    <string name="EditQuestNameInputMessage">Enter Quest Name</string>
+    <string name="editQuestDescriptionText">Enter Quest Description</string>
 </resources>
