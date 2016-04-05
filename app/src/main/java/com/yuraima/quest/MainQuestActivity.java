@@ -53,6 +53,7 @@ public class MainQuestActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        menu.add(0, menu.FIRST, 0, "Quest Details");
         getMenuInflater().inflate(R.menu.menu_main_quest, menu);
         return true;
     }

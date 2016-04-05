@@ -5,4 +5,5 @@
     <string name="title_activity_add_quest">AddQuestActivity</string>
     <string name="EditQuestNameInputMessage">Enter Quest Name</string>
     <string name="editQuestDescriptionText">Enter Quest Description</string>
+    <string name="addBtnText">Add Quest</string>
 </resources>
