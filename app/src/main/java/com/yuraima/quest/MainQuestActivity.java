@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 public class MainQuestActivity extends AppCompatActivity {
 
     final static String TAG = "MainQuestActivity";
+    final static int ADD_QUEST_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +43,30 @@ public class MainQuestActivity extends AppCompatActivity {
                 addTask(view);
             }
         });
+
+        /* Sets onClickListener for Lab4 activity */
+        Button saBtn = (Button) findViewById(R.id.saBtn);
+        saBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saActivity(v);
+            }
+        });
     }
 
+    /**
+     * Starts a a new AddQuestActivity
+     * @param view  view object passed by the onClickListener event
+     */
     public void addTask(View view) {
         Log.i(TAG, "Clicked Add");
-        Intent intent = new Intent(this, AddQuestActivity.class);
+        final Intent intent = new Intent(this, AddQuestActivity.class);
+        startActivity(intent);
+    }
+
+    public void saActivity(View view) {
+        Log.i(TAG, "Clicked Add");
+        final Intent intent = new Intent(this, SimpleActivity.class);
         startActivity(intent);
     }
 

@@ -6,4 +6,12 @@
     <string name="EditQuestNameInputMessage">Enter Quest Name</string>
     <string name="editQuestDescriptionText">Enter Quest Description</string>
     <string name="addBtnText">Add Quest</string>
+    <string name="title_activity_simple">SimpleActivity</string>
+    <string name="faLabelText">Activity #1</string>
+    <string name="saBtnText">Change Control to Activity 2</string>
+    <string name="saLabelText">Activity #2</string>
+    <string name="faBtnText">Change Control to Activity 1</string>
+    <string name="questNameWarningText">Please Enter a Quest Name</string>
+    <string name="questDescWarningText">Please Enter a Quest Description</string>
+    <string name="calendarBtnText">Set in Calendar</string>
 </resources>
