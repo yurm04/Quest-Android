@@ -1,7 +1,11 @@
 package com.yuraima.quest;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,11 +18,17 @@ import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 public class MainQuestActivity extends AppCompatActivity {
 
     final static String TAG = "MainQuestActivity";
     final static int ADD_QUEST_REQUEST = 1;
+
+    /*
+    ConnectivityManager connManager;
+    NetworkInfo netInfo;
+    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +62,31 @@ public class MainQuestActivity extends AppCompatActivity {
                 saActivity(v);
             }
         });
+
+        /* Connecting
+        connManager = (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        netInfo = connManager.getActiveNetworkInfo();
+         */
+
+        /* Is Connected Button
+        Button isConnBtn = (Button) findViewById(R.id.isConnectedBtn);
+        isConnBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isConnected(v);
+            }
+        });
+         */
+
+        /* Telephone Button
+        Button telBtn = (Button) findViewById(R.id.telStateBtn);
+        telBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makeCall(v);
+            }
+        });
+         */
     }
 
     /**
@@ -92,4 +127,29 @@ public class MainQuestActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    /*
+    public void isConnected(View view) {
+        boolean isConnected = netInfo != null && netInfo.isConnectedOrConnecting();
+
+        toast(String.format("Connected?: %s", isConnected));
+    }
+    */
+
+    public void toast(String message) {
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, message, duration);
+        toast.show();
+    }
+
+    /*
+    public void makeCall(View aView){
+        String NUMBER = "tel:2038430093";
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse(NUMBER));
+
+    }
+    */
 }
