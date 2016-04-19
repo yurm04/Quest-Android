@@ -14,4 +14,5 @@
     <string name="questNameWarningText">Please Enter a Quest Name</string>
     <string name="questDescWarningText">Please Enter a Quest Description</string>
     <string name="calendarBtnText">Set in Calendar</string>
+    <string name="showQuestBtnText">Show Quests</string>
 </resources>

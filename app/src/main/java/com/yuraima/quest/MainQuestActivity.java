@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class MainQuestActivity extends AppCompatActivity {
 
     final static String TAG = "MainQuestActivity";
@@ -55,38 +57,17 @@ public class MainQuestActivity extends AppCompatActivity {
         });
 
         /* Sets onClickListener for Lab4 activity */
-        Button saBtn = (Button) findViewById(R.id.saBtn);
-        saBtn.setOnClickListener(new View.OnClickListener() {
+        Button listBtn = (Button) findViewById(R.id.questListBtn);
+        listBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saActivity(v);
             }
         });
 
-        /* Connecting
-        connManager = (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        netInfo = connManager.getActiveNetworkInfo();
-         */
-
-        /* Is Connected Button
-        Button isConnBtn = (Button) findViewById(R.id.isConnectedBtn);
-        isConnBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isConnected(v);
-            }
-        });
-         */
-
-        /* Telephone Button
-        Button telBtn = (Button) findViewById(R.id.telStateBtn);
-        telBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                makeCall(v);
-            }
-        });
-         */
+        /* Log all Quests */
+        List<Quest> allQuests = Quest.listAll(Quest.class);
+        Log.i(TAG, allQuests.toString());
     }
 
     /**
@@ -128,14 +109,6 @@ public class MainQuestActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*
-    public void isConnected(View view) {
-        boolean isConnected = netInfo != null && netInfo.isConnectedOrConnecting();
-
-        toast(String.format("Connected?: %s", isConnected));
-    }
-    */
-
     public void toast(String message) {
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
@@ -144,12 +117,5 @@ public class MainQuestActivity extends AppCompatActivity {
         toast.show();
     }
 
-    /*
-    public void makeCall(View aView){
-        String NUMBER = "tel:2038430093";
-        Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse(NUMBER));
 
-    }
-    */
 }

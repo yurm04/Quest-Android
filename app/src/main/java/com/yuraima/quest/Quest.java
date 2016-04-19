@@ -1,17 +1,29 @@
 package com.yuraima.quest;
 
 import android.util.Log;
+import com.orm.SugarRecord;
 
 /**
  * Created by yestevez on 4/4/16.
  */
-public class Quest {
+public class Quest extends SugarRecord {
     final static String TAG = "QuestClass";
 
     String name;
     String description;
-    int id;
 
+    /* CONSTRUCTOR */
+    public Quest() {}
+
+    Quest(String name, String description) {
+        setName(name);
+        setDescription(description);
+    }
+
+    @Override
+    public String toString() {
+        return name + ": " + description;
+    }
 
     /* GETTERS AND SETTERS */
 

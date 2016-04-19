@@ -8,6 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SimpleAdapter;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SimpleActivity extends AppCompatActivity {
     final static String TAG = "SimpleActivity";
@@ -18,26 +24,19 @@ public class SimpleActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        /* Get Quests */
+        List<Quest> allQuests = Quest.listAll(Quest.class);
+        List<Map<String,String>> questStrings = new ArrayList<Map<String,String>>();
 
-        /* Back to activity 1 */
-        Button faBtn = (Button) findViewById(R.id.faBtn);
-        faBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                faActivity(v);
-            }
-        });
+        for (Quest quest : allQuests) {
+            HashMap<String, String> singleQuest = new HashMap<String, String>();
+            singleQuest.put("quest", quest.toString());
+
+            questStrings.add(singleQuest);
+        }
+
+        /* Create List View */
+        // ?
     }
 
-    protected void faActivity(View view) {
-        Log.i(TAG, "go back at some point");
-    }
 }

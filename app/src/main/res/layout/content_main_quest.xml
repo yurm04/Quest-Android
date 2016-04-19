@@ -45,16 +45,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Is Connected"
-        android:id="@+id/isConnectedBtn"
+        android:text="@string/showQuestBtnText"
+        android:id="@+id/questListBtn"
         android:layout_below="@+id/addQuestBtn"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Call Me"
-        android:id="@+id/telStateBtn"
-        android:layout_below="@+id/isConnectedBtn"
-        android:layout_centerHorizontal="true" />
 </RelativeLayout>

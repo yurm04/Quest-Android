@@ -21,10 +21,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddQuestActivity extends AppCompatActivity {
     final static String TAG = "AddQuestActivity";
     final static int CALENDAR_REQUEST = 1;
-    QuestDBHelper qdb;
+//    QuestDBHelper qdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,21 +40,23 @@ public class AddQuestActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         /* Create DB helper for creating new quests */
-        this.qdb = new QuestDBHelper(getApplicationContext());
+//        this.qdb = new QuestDBHelper(getApplicationContext());
         Log.i(TAG, "Created DB helper");
 
         /* Event Listener for "Add Quest" Button */
         Button addQuestBtn = (Button) findViewById(R.id.addQuestBtn);
-        addQuestBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean result = addQuestEventListener();
-                if (result) {
-                    // return to main activity
-                    finish();
+        if (addQuestBtn != null) {
+            addQuestBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    boolean result = addQuestEventListener();
+                    if (result) {
+                        // return to main activity
+                        finish();
+                    }
                 }
-            }
-        });
+            });
+        }
 
         /* Create calendar event button handler */
         Button calendarBtn = (Button) findViewById(R.id.calendarBtn);
@@ -135,16 +140,23 @@ public class AddQuestActivity extends AppCompatActivity {
             return false;
         }
 
-        boolean result = this.qdb.addQuest(name, desc);
+        Quest newQuest = new Quest(name, desc);
+        newQuest.save();
 
-        if (result == true) {
-            Context context = getApplicationContext();
-            CharSequence text = "Added Quest";
-            int duration = Toast.LENGTH_SHORT;
+        /* Log New Quest */
+        Log.i(TAG, "New quest added - " + newQuest.toString());
 
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-        }
+        /* Log all Quests, including new one */
+        List<Quest> allQuests = Quest.listAll(Quest.class);
+        Log.i(TAG, allQuests.toString());
+
+        /* Show toast to confirm new quest*/
+        Context context = getApplicationContext();
+        CharSequence text = "Added Quest";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
 
         return true;
     }
