@@ -46,7 +46,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SimpleActivity"
+            android:name=".QuestListActivity"
             android:label="@string/title_activity_simple"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

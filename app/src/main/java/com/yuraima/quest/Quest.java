@@ -7,10 +7,10 @@ import com.orm.SugarRecord;
  * Created by yestevez on 4/4/16.
  */
 public class Quest extends SugarRecord {
-    final static String TAG = "QuestClass";
+    public final static String TAG = "QuestClass";
 
-    String name;
-    String description;
+    public String name;
+    public String description;
 
     /* CONSTRUCTOR */
     public Quest() {}
