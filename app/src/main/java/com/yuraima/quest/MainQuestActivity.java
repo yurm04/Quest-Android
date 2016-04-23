@@ -41,7 +41,7 @@ public class MainQuestActivity extends AppCompatActivity {
         });
 
         /* Sets onClickListener and onClick method for Add Quest Button */
-        Button addQuestBtn = (Button) findViewById(R.id.addQuestBtn);
+        Button addQuestBtn = (Button) findViewById(R.id.addBtn);
         addQuestBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,7 +69,7 @@ public class MainQuestActivity extends AppCompatActivity {
      */
     public void addTask(View view) {
         Log.i(TAG, "Clicked Add");
-        final Intent intent = new Intent(this, AddQuestActivity.class);
+        final Intent intent = new Intent(this, AddItemActivity.class);
         startActivity(intent);
     }
 

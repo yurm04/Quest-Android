@@ -1,30 +1,23 @@
 package com.yuraima.quest;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class AddQuestActivity extends AppCompatActivity {
+public class AddItemActivity extends AppCompatActivity {
     final static String TAG = "AddQuestActivity";
     final static int CALENDAR_REQUEST = 1;
 //    QuestDBHelper qdb;
@@ -32,24 +25,20 @@ public class AddQuestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_quest);
+        setContentView(R.layout.activity_add_item);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         /* Sets MainQuestActivity as default when the UP button is hit */
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        /* Create DB helper for creating new quests */
-//        this.qdb = new QuestDBHelper(getApplicationContext());
-        Log.i(TAG, "Created DB helper");
-
         /* Event Listener for "Add Quest" Button */
-        Button addQuestBtn = (Button) findViewById(R.id.addQuestBtn);
-        if (addQuestBtn != null) {
-            addQuestBtn.setOnClickListener(new View.OnClickListener() {
+        Button addItemBtn = (Button) findViewById(R.id.addBtn);
+        if (addItemBtn != null) {
+            addItemBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    boolean result = addQuestEventListener();
+                    boolean result = addItemEventListener();
                     if (result) {
                         // return to main activity
                         finish();
@@ -73,8 +62,8 @@ public class AddQuestActivity extends AppCompatActivity {
      * to create an event and returns the event date
      */
     private boolean createCalendarEvent(View view) {
-        EditText nameField = (EditText) findViewById(R.id.editQuestName);
-        EditText descField = (EditText) findViewById(R.id.editQuestDesc);
+        EditText nameField = (EditText) findViewById(R.id.editName);
+        EditText descField = (EditText) findViewById(R.id.editDesc);
 
         // check for valid name and description
         String name = nameField.getText().toString();
@@ -126,9 +115,9 @@ public class AddQuestActivity extends AppCompatActivity {
      *
      * @return success or failure to add new quest
      */
-    private boolean addQuestEventListener() {
-        EditText nameField = (EditText) findViewById(R.id.editQuestName);
-        EditText descField = (EditText) findViewById(R.id.editQuestDesc);
+    private boolean addItemEventListener() {
+        EditText nameField = (EditText) findViewById(R.id.editName);
+        EditText descField = (EditText) findViewById(R.id.editDesc);
 
         // check for valid name and description
         String name = nameField.getText().toString();
@@ -171,8 +160,8 @@ public class AddQuestActivity extends AppCompatActivity {
      */
     private boolean validateFields(String name, String desc) {
 
-        TextView nameWarning = (TextView) findViewById(R.id.questNameWarning);
-        TextView descWarning = (TextView) findViewById(R.id.questDescWarning);
+        TextView nameWarning = (TextView) findViewById(R.id.nameWarning);
+        TextView descWarning = (TextView) findViewById(R.id.descWarning);
         boolean valid = false;      // flag for validity
 
         // NAME WARNING VISIBILITY

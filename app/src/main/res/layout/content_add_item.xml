@@ -10,13 +10,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.yuraima.quest.AddQuestActivity"
-    tools:showIn="@layout/activity_add_quest"
+    tools:showIn="@layout/activity_add_item"
     android:id="@+id/o">
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editQuestName"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -28,7 +27,8 @@
         android:ellipsize="end"
         android:maxLength="40"
         android:imeOptions="actionDone"
-        android:hint="@string/EditQuestNameInputMessage" />
+        android:hint="@string/editNameInputMessage"
+        android:id="@+id/editName" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -38,19 +38,19 @@
         android:ems="10"
         android:singleLine="true"
         android:imeOptions="actionDone"
-        android:id="@+id/editQuestDesc"
-        android:hint="@string/editQuestDescriptionText"
-        android:layout_above="@+id/questDescWarning"
+        android:id="@+id/editDesc"
+        android:hint="@string/editDescriptionText"
+        android:layout_above="@+id/descWarning"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/editQuestName"
-        android:layout_alignEnd="@+id/editQuestName" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/addBtnText"
-        android:id="@+id/addQuestBtn"
+        android:id="@+id/addBtn"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
@@ -58,20 +58,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/questNameWarningText"
-        android:id="@+id/questNameWarning"
-        android:layout_below="@+id/editQuestName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:text="@string/descWarningText"
+        android:id="@+id/nameWarning"
         android:visibility="invisible"
-        android:textColor="#c62828" />
+        android:textColor="#c62828"
+        android:layout_below="@+id/editName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/questDescWarningText"
-        android:id="@+id/questDescWarning"
+        android:text="@string/descWarningText"
+        android:id="@+id/descWarning"
         android:visibility="invisible"
         android:textColor="#c62828"
         android:layout_above="@+id/calendarBtn"
@@ -83,6 +83,6 @@
         android:layout_height="wrap_content"
         android:text="@string/calendarBtnText"
         android:id="@+id/calendarBtn"
-        android:layout_above="@+id/addQuestBtn"
+        android:layout_above="@+id/addBtn"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

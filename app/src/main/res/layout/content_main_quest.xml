@@ -16,38 +16,18 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/addQuestBtnText"
-        android:id="@+id/addQuestBtn"
+        android:text="@string/addItemBtnText"
+        android:id="@+id/addBtn"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="54dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/faLabelText"
-        android:id="@+id/faLabel"
-        android:layout_marginTop="92dp"
-        android:layout_below="@+id/addQuestBtn"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/saBtnText"
-        android:id="@+id/saBtn"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/showQuestBtnText"
         android:id="@+id/questListBtn"
-        android:layout_below="@+id/addQuestBtn"
+        android:layout_below="@+id/addBtn"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
