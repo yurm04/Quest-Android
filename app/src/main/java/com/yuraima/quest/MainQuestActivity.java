@@ -80,7 +80,7 @@ public class MainQuestActivity extends AppCompatActivity {
      */
     public void showQuestList(View view) {
         Log.i(TAG, "Clicked show quests");
-        final Intent intent = new Intent(this, TestActivity.class);
+        final Intent intent = new Intent(this, QuestListActivity.class);
         startActivity(intent);
     }
 

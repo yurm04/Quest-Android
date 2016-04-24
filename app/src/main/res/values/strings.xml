@@ -13,4 +13,6 @@
     <string name="showQuestBtnText">Show Quests</string>
     <string name="title_activity_task_list">TaskListActivity</string>
     <string name="title_activity_show_tasks">ShowTasksActivity</string>
+    <string name="noQuestsMessageText">No Quests</string>
+    <string name="addSomeText">Add Some Now</string>
 </resources>

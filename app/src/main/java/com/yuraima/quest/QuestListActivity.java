@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -23,7 +26,11 @@ public class QuestListActivity extends AppCompatActivity
     final static String TAG = "QuestListActivity";
     private GestureDetectorCompat detector;
     ArrayAdapter<Quest> adapter;
+    QuestListViewAdapter questListViewAdapter;
+
     ListView questListView;
+    TextView emptyMessage;
+    TextView emptyMessageSub;
 
 
     @Override
@@ -34,9 +41,17 @@ public class QuestListActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        /* Sets MainQuestActivity as default when the UP button is hit */
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         /* Instantiate double tap gesture detector for activity */
         this.detector = new GestureDetectorCompat(this, this);
         this.detector.setOnDoubleTapListener(this);
+        this.detector.setIsLongpressEnabled(true);
+
+        /* Get TextView messages for empty quest list */
+        emptyMessage = (TextView) findViewById(R.id.noQuestsMessage);
+        emptyMessageSub = (TextView) findViewById(R.id.noQuestsSub);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -48,12 +63,6 @@ public class QuestListActivity extends AppCompatActivity
 
         /* Get Quests for ListView*/
         getQuestList();
-        questListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showQuest(position);
-            }
-        });
     }
 
 
@@ -69,21 +78,52 @@ public class QuestListActivity extends AppCompatActivity
     /**
      * Checks for quest to populate ListView with.
      */
-    public void getQuestList() {
+    public boolean getQuestList() {
         ArrayList<Quest> allQuests = (ArrayList<Quest>) Quest.listAll(Quest.class);
+
+        if (allQuests.size() == 0) {
+            showEmptyListMessage();
+            return false;
+        } else {
+            hideEmptyListMessage();
+        }
 
         if ( questListView == null ) {
             questListView = (ListView) findViewById(R.id.questListView);
         }
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, allQuests);
-
+//        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, allQuests);
+        questListViewAdapter = new QuestListViewAdapter(this, android.R.layout.simple_list_item_1, allQuests);
         questListView.setAdapter(adapter);
+
+        questListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                showQuest(position);
+            }
+        });
+
+        return true;
+    }
+
+    public void showEmptyListMessage() {
+        if (emptyMessage != null && emptyMessageSub != null) {
+            emptyMessage.setVisibility(View.VISIBLE);
+            emptyMessageSub.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void hideEmptyListMessage() {
+        if (emptyMessage.getVisibility() == View.VISIBLE ||
+            emptyMessageSub.getVisibility() == View.VISIBLE) {
+            emptyMessage.setVisibility(View.GONE);
+            emptyMessageSub.setVisibility(View.GONE);
+        }
     }
 
     public void showQuest(int position) {
 //        Quest selected = adapter.getItem(position);
-        final Intent taskIntent = new Intent(this, AddItemActivity.class);
+        final Intent taskIntent = new Intent(this, TaskListActivity.class);
 //        intent.putExtra("quest", selected);
         startActivity(taskIntent);
     }
@@ -150,7 +190,8 @@ public class QuestListActivity extends AppCompatActivity
 
     @Override
     public void onLongPress(MotionEvent e) {
-
+        Log.i(TAG, "onLongPress");
+        this.addQuest();
     }
 
     @Override

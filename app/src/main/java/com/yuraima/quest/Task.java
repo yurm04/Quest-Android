@@ -9,15 +9,17 @@ public class Task extends SugarRecord {
     public Quest quest;     // the quest that this task belongs to
     public String name;
     public String description;
+    public boolean complete;
     public String date_completed;
 
     /* CONSTRUCTORS */
 
     public Task() {}
 
-    public Task(String name, String description) {
+    public Task(String name, String description, boolean complete) {
         this.name = name;
         this.description = description;
+        this.complete = complete;
     }
 
     public String toString() {
