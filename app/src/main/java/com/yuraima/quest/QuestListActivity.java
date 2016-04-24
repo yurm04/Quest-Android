@@ -1,7 +1,6 @@
 package com.yuraima.quest;
 
 import android.content.Intent;
-import android.gesture.Gesture;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GestureDetectorCompat;
@@ -11,6 +10,7 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -22,13 +22,14 @@ public class QuestListActivity extends AppCompatActivity
 
     final static String TAG = "QuestListActivity";
     private GestureDetectorCompat detector;
-    ArrayAdapter<String> adapter;
+    ArrayAdapter<Quest> adapter;
     ListView questListView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, "onCreate");
         setContentView(R.layout.activity_quest_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -41,22 +42,28 @@ public class QuestListActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addTask();
+                addQuest();
             }
         });
 
         /* Get Quests for ListView*/
         getQuestList();
+        questListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                showQuest(position);
+            }
+        });
     }
 
 
     /**
      * Starts a a new AddQuestActivity
      */
-    public void addTask() {
+    public void addQuest() {
         Log.i(TAG, "Clicked Add");
-        final Intent intent = new Intent(this, AddItemActivity.class);
-        startActivity(intent);
+        final Intent addIntent = new Intent(this, AddItemActivity.class);
+        startActivity(addIntent);
     }
 
     /**
@@ -64,19 +71,21 @@ public class QuestListActivity extends AppCompatActivity
      */
     public void getQuestList() {
         ArrayList<Quest> allQuests = (ArrayList<Quest>) Quest.listAll(Quest.class);
-        ArrayList<String> questNames = new ArrayList<>();
-        ArrayList<String> questDescs = new ArrayList<>();
 
-        for (Quest quest : allQuests) {
-            questNames.add(quest.name);
-            questDescs.add(quest.description);
+        if ( questListView == null ) {
+            questListView = (ListView) findViewById(R.id.questListView);
         }
 
-        questListView = (ListView) findViewById(R.id.questListView);
-
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, questNames);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, allQuests);
 
         questListView.setAdapter(adapter);
+    }
+
+    public void showQuest(int position) {
+//        Quest selected = adapter.getItem(position);
+        final Intent taskIntent = new Intent(this, AddItemActivity.class);
+//        intent.putExtra("quest", selected);
+        startActivity(taskIntent);
     }
 
     /**
@@ -99,14 +108,13 @@ public class QuestListActivity extends AppCompatActivity
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        this.detector.onTouchEvent(event);
         return super.onTouchEvent(event);
     }
 
     @Override
     public boolean onDoubleTap(MotionEvent e) {
         Log.i(TAG, "onDoubleTap");
-        this.addTask();
+        this.addQuest();
         return true;
     }
 

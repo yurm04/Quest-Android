@@ -61,7 +61,17 @@
         <activity
             android:name=".TaskListActivity"
             android:label="@string/title_activity_task_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:parentActivityName=".QuestListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.yuraima.quest.QuestListActivity" />
+        </activity>
+        <activity
+            android:name=".ShowTasksActivity"
+            android:label="@string/title_activity_show_tasks"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".TestActivity"></activity>
     </application>
 
 </manifest>

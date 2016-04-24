@@ -54,7 +54,7 @@ public class MainQuestActivity extends AppCompatActivity {
         listBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saActivity(v);
+                showQuestList(v);
             }
         });
 
@@ -73,9 +73,14 @@ public class MainQuestActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void saActivity(View view) {
-        Log.i(TAG, "Clicked Add");
-        final Intent intent = new Intent(this, QuestListActivity.class);
+    /**
+     * Starts a new activity QuestListActivity that displays
+     * all quests in a ListView
+     * @param view  view object passed by the onClickListener event
+     */
+    public void showQuestList(View view) {
+        Log.i(TAG, "Clicked show quests");
+        final Intent intent = new Intent(this, TestActivity.class);
         startActivity(intent);
     }
 

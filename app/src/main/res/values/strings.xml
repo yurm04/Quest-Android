@@ -12,4 +12,5 @@
     <string name="calendarBtnText">Set in Calendar</string>
     <string name="showQuestBtnText">Show Quests</string>
     <string name="title_activity_task_list">TaskListActivity</string>
+    <string name="title_activity_show_tasks">ShowTasksActivity</string>
 </resources>

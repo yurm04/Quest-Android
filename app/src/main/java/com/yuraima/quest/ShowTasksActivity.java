@@ -8,13 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
-public class TaskListActivity extends AppCompatActivity {
-    final static String TAG = "TaskListActivity";
+public class ShowTasksActivity extends AppCompatActivity {
+    final static String TAG = "ShowTasksActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG, "onCreate");
-        setContentView(R.layout.activity_task_list);
+        setContentView(R.layout.activity_show_tasks);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -26,7 +25,7 @@ public class TaskListActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Log.i(TAG, "showTasksActivity onCreate");
     }
 
 }

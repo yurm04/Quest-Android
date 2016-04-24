@@ -3,10 +3,13 @@ package com.yuraima.quest;
 import android.util.Log;
 import com.orm.SugarRecord;
 
+import java.io.Serializable;
+
 /**
  * Created by yestevez on 4/4/16.
  */
-public class Quest extends SugarRecord {
+public class Quest extends SugarRecord
+    implements Serializable {
     public final static String TAG = "QuestClass";
 
     public String name;
@@ -22,7 +25,7 @@ public class Quest extends SugarRecord {
 
     @Override
     public String toString() {
-        return name + ": " + description;
+        return name;
     }
 
     /* GETTERS AND SETTERS */
