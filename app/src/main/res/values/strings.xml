@@ -2,7 +2,7 @@
     <string name="app_name">Quest</string>
     <string name="action_settings">Settings</string>
     <string name="addItemBtnText">Add Item</string>
-    <string name="title_activity_add_item">AddItemActivity</string>
+    <string name="title_activity_add_item">Add Item Activity</string>
     <string name="editNameInputMessage">Enter Name</string>
     <string name="editDescriptionText">Enter Description</string>
     <string name="addBtnText">Add Item</string>
@@ -11,8 +11,9 @@
     <string name="descWarningText">Please Enter a Description</string>
     <string name="calendarBtnText">Set in Calendar</string>
     <string name="showQuestBtnText">Show Quests</string>
-    <string name="title_activity_task_list">TaskListActivity</string>
-    <string name="title_activity_show_tasks">ShowTasksActivity</string>
+    <string name="title_activity_task_list">Your Tasks</string>
+    <string name="title_activity_show_tasks">Your Tasks</string>
     <string name="noQuestsMessageText">No Quests</string>
     <string name="addSomeText">Add Some Now</string>
+    <string name="iconDescription">completion status icon</string>
 </resources>

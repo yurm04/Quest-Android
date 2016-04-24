@@ -93,7 +93,7 @@ public class QuestListActivity extends AppCompatActivity
         }
 
 //        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, allQuests);
-        questListViewAdapter = new QuestListViewAdapter(this, android.R.layout.simple_list_item_1, allQuests);
+        adapter = new QuestListViewAdapter(this, R.layout.quest_list_item, allQuests);
         questListView.setAdapter(adapter);
 
         questListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

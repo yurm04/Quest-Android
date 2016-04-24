@@ -21,6 +21,7 @@ public class AddItemActivity extends AppCompatActivity {
     final static String TAG = "AddQuestActivity";
     final static int CALENDAR_REQUEST = 1;
 //    QuestDBHelper qdb;
+    String action;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

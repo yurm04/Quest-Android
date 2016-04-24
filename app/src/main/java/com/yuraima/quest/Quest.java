@@ -5,6 +5,8 @@ import com.orm.SugarRecord;
 import com.orm.dsl.Ignore;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yestevez on 4/4/16.
@@ -17,17 +19,15 @@ public class Quest extends SugarRecord
     public String description;
     public boolean complete;
 
-    @Ignore
-    public int icon;
 
     /* CONSTRUCTORS */
 
     public Quest() {}
 
     Quest(String name, String description) {
-        setName(name);
-        setDescription(description);
-        setComplete(false);
+        this.name = name;
+        this.description = description;
+        this.complete = false;
     }
 
     @Override
@@ -63,15 +63,26 @@ public class Quest extends SugarRecord
         this.complete = complete;
     }
 
-    public void setIcon() {
+    public int getIcon() {
         if (this.complete) {
-            icon = R.drawable.ic_done_black_24dp;
+            return R.drawable.ic_verified_user_black_24dp;
         } else {
-            icon = R.drawable.ic_explore_black_24dp;
+            return R.drawable.ic_explore_black_24dp;
         }
     }
 
-    public int getIcon() {
-        return this.icon;
+    public List<Task> getTasks() {
+        String questId = String.valueOf(this.getId());
+        return Task.find(Task.class, "quest = ?", questId);
+    }
+
+    public String taskCount() {
+        if (this.complete) {
+            return "Completed";
+        } else {
+            int count = this.getTasks().size();
+            return count + " Tasks";
+        }
+
     }
 }
