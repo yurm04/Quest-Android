@@ -20,11 +20,6 @@ public class MainQuestActivity extends AppCompatActivity {
     final static String TAG = "MainQuestActivity";
     final static int ADD_QUEST_REQUEST = 1;
 
-    /*
-    ConnectivityManager connManager;
-    NetworkInfo netInfo;
-    */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +56,7 @@ public class MainQuestActivity extends AppCompatActivity {
         /* Log all Quests */
         List<Quest> allQuests = Quest.listAll(Quest.class);
         Log.i(TAG, allQuests.toString());
+        Log.i(TAG, "onCreate");
     }
 
     /**
@@ -115,5 +111,9 @@ public class MainQuestActivity extends AppCompatActivity {
         toast.show();
     }
 
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG, "onStart");
+    }
 }

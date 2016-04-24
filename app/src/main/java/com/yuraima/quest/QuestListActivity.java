@@ -1,5 +1,6 @@
 package com.yuraima.quest;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -27,6 +28,7 @@ public class QuestListActivity extends AppCompatActivity
     private GestureDetectorCompat detector;
     ArrayAdapter<Quest> adapter;
     QuestListViewAdapter questListViewAdapter;
+    int REQUEST_CODE = 1;
 
     ListView questListView;
     TextView emptyMessage;
@@ -65,6 +67,11 @@ public class QuestListActivity extends AppCompatActivity
         getQuestList();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG, "onStart");
+    }
 
     /**
      * Starts a a new AddQuestActivity
@@ -99,7 +106,7 @@ public class QuestListActivity extends AppCompatActivity
         questListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showQuest(position);
+                showQuestTaskList(position);
             }
         });
 
@@ -121,11 +128,24 @@ public class QuestListActivity extends AppCompatActivity
         }
     }
 
-    public void showQuest(int position) {
-//        Quest selected = adapter.getItem(position);
+    public void showQuestTaskList(int position) {
+        Quest selected = adapter.getItem(position);
         final Intent taskIntent = new Intent(this, TaskListActivity.class);
-//        intent.putExtra("quest", selected);
-        startActivity(taskIntent);
+        taskIntent.putExtra("quest", selected);
+        startActivityForResult(taskIntent, REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                Log.i(TAG, "result: " + data.getStringExtra("result"));
+            } else {
+                Log.i(TAG, "no result to show");
+            }
+        }
     }
 
     /**

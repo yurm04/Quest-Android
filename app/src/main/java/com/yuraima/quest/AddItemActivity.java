@@ -59,6 +59,12 @@ public class AddItemActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG, "onStart");
+    }
+
     /**
      * Creates a calendar component intent, allows user
      * to create an event and returns the event date
