@@ -27,7 +27,7 @@ public class MainQuestActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /* Sets onClickListener for Lab4 activity */
+        /* Sets onClickListener for Quest List button */
         Button listBtn = (Button) findViewById(R.id.questListBtn);
         listBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,16 +40,6 @@ public class MainQuestActivity extends AppCompatActivity {
         List<Quest> allQuests = Quest.listAll(Quest.class);
         Log.i(TAG, allQuests.toString());
         Log.i(TAG, "onCreate");
-    }
-
-    /**
-     * Starts a a new AddQuestActivity
-     * @param view  view object passed by the onClickListener event
-     */
-    public void addTask(View view) {
-        Log.i(TAG, "Clicked Add");
-        final Intent intent = new Intent(this, AddItemActivity.class);
-        startActivity(intent);
     }
 
     /**

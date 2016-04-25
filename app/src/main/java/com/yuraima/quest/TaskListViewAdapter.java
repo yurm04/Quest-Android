@@ -14,6 +14,8 @@ import java.util.List;
 
 /**
  * Created by yestevez on 4/24/16.
+ * Essentially the same as QuestListViewAdapter.  The core process is the same.
+ * More in depth details can be found in the QuestListViewAdapter class
  */
 public class TaskListViewAdapter extends ArrayAdapter<Task> {
     final static String TAG = "TaskListViewAdapter";

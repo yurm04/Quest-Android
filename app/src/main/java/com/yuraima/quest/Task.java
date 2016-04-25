@@ -6,7 +6,7 @@ import com.orm.SugarRecord;
  * Created by yestevez on 4/19/16.
  */
 public class Task extends SugarRecord {
-    public long quest;     // the quest that this task belongs to
+    public long quest;     // the quest id that this task belongs to
     public String name;
     public String description;
     public boolean complete;
@@ -23,6 +23,10 @@ public class Task extends SugarRecord {
         this.quest = quest;
     }
 
+    /**
+     * Get whether or not the task is completed in string format
+     * @return String representation of status
+     */
     public String getStatus() {
         if (!complete) {
             return "In progress";
@@ -31,10 +35,11 @@ public class Task extends SugarRecord {
         }
     }
 
-    public boolean isComplete() {
-        return this.complete;
-    }
-
+    /**
+     * Get the appropriate drawable resource id for the
+     * "completed" or "in progress" symbols
+     * @return int resource id
+     */
     public int getIcon() {
         if (complete) {
             return R.drawable.ic_done_black_24dp;
@@ -44,6 +49,10 @@ public class Task extends SugarRecord {
     }
     public String toString() {
         return this.name + ": " + this.description;
+    }
+
+    public boolean isComplete() {
+        return this.complete;
     }
 
     /* GETTERS AND SETTERS */
