@@ -27,23 +27,6 @@ public class MainQuestActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addTask(view);
-            }
-        });
-
-        /* Sets onClickListener and onClick method for Add Quest Button */
-        Button addQuestBtn = (Button) findViewById(R.id.addBtn);
-        addQuestBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addTask(view);
-            }
-        });
-
         /* Sets onClickListener for Lab4 activity */
         Button listBtn = (Button) findViewById(R.id.questListBtn);
         listBtn.setOnClickListener(new View.OnClickListener() {

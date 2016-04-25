@@ -9,9 +9,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.yuraima.quest.AddQuestActivity"
-    tools:showIn="@layout/activity_add_item"
-    android:id="@+id/o">
+    tools:context="com.yuraima.quest.AddTaskActivity"
+    tools:showIn="@layout/activity_add_task"
+    android:id="@+id/activity_add_task">
 
     <EditText
         android:layout_width="wrap_content"
@@ -40,11 +40,19 @@
         android:imeOptions="actionDone"
         android:id="@+id/editDesc"
         android:hint="@string/editDescriptionText"
-        android:layout_below="@+id/nameWarning"
+        android:layout_above="@+id/descWarning"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/editName"
-        android:layout_alignEnd="@+id/editName" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/addBtnText"
+        android:id="@+id/itemActionBtn"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -66,64 +74,15 @@
         android:id="@+id/descWarning"
         android:visibility="invisible"
         android:textColor="#c62828"
-        android:layout_below="@+id/editDesc"
+        android:layout_above="@+id/calendarBtn"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/descWarning"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:id="@+id/linearLayout">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/statusLabelText"
-            android:id="@+id/textView" />
-
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioGroup">
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/inProgressRadioText"
-                android:id="@+id/inProgressRadio"
-                android:checked="true" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/completeRadioText"
-                android:id="@+id/completeRadio"
-                android:checked="false" />
-        </RadioGroup>
-
-    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/calendarBtnText"
         android:id="@+id/calendarBtn"
-        android:layout_below="@+id/linearLayout"
+        android:layout_above="@+id/itemActionBtn"
         android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/addBtnText"
-        android:id="@+id/itemActionBtn"
-        android:layout_below="@+id/calendarBtn"
-        android:layout_centerHorizontal="true" />
-
 </RelativeLayout>

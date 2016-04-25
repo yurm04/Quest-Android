@@ -1,5 +1,6 @@
 package com.yuraima.quest;
 
+import android.support.annotation.Nullable;
 import android.util.Log;
 import com.orm.SugarRecord;
 import com.orm.dsl.Ignore;
@@ -24,10 +25,10 @@ public class Quest extends SugarRecord
 
     public Quest() {}
 
-    Quest(String name, String description) {
+    Quest(String name, String description, boolean complete) {
         this.name = name;
         this.description = description;
-        this.complete = false;
+        this.complete = complete;
     }
 
     @Override
@@ -65,14 +66,21 @@ public class Quest extends SugarRecord
 
     public int getIcon() {
         if (this.complete) {
+            Log.i(TAG, this.name + ": is complete");
             return R.drawable.ic_verified_user_black_24dp;
         } else {
+            Log.i(TAG, this.name + ": not complete");
             return R.drawable.ic_explore_black_24dp;
         }
     }
 
-    public List<Task> getTasks() {
-        String questId = String.valueOf(this.getId());
+    public List<Task> getTasks(@Nullable Long passedId) {
+        String questId;
+        if (passedId != null) {
+            questId = String.valueOf(passedId);
+        } else {
+            questId = String.valueOf(this.getId());
+        }
         return Task.find(Task.class, "quest = ?", questId);
     }
 
@@ -80,7 +88,7 @@ public class Quest extends SugarRecord
         if (this.complete) {
             return "Completed";
         } else {
-            int count = this.getTasks().size();
+            int count = this.getTasks(null).size();
             return count + " Tasks";
         }
 

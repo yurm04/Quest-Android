@@ -16,4 +16,9 @@
     <string name="noQuestsMessageText">No Quests</string>
     <string name="addSomeText">Add Some Now</string>
     <string name="iconDescription">completion status icon</string>
+    <string name="noTasksMsgTxt">No Tasks for Quest</string>
+    <string name="noTasksSubMsgText">Add Some Now</string>
+    <string name="inProgressRadioText">In Progress</string>
+    <string name="completeRadioText">Complete</string>
+    <string name="statusLabelText">Choose Status</string>
 </resources>

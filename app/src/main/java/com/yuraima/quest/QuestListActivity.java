@@ -79,6 +79,8 @@ public class QuestListActivity extends AppCompatActivity
     public void addQuest() {
         Log.i(TAG, "Clicked Add");
         final Intent addIntent = new Intent(this, AddItemActivity.class);
+        addIntent.putExtra("action", "add");
+        addIntent.putExtra("itemType", "quest");
         startActivity(addIntent);
     }
 
@@ -110,6 +112,18 @@ public class QuestListActivity extends AppCompatActivity
             }
         });
 
+        questListView.setLongClickable(true);
+        questListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Quest quest = adapter.getItem(position);
+                quest.complete = true;
+                quest.save();
+                getQuestList();
+                return true;
+            }
+        });
+
         return true;
     }
 
@@ -130,8 +144,10 @@ public class QuestListActivity extends AppCompatActivity
 
     public void showQuestTaskList(int position) {
         Quest selected = adapter.getItem(position);
+//        Log.i(TAG, "quest Id: " + selected.getId());
         final Intent taskIntent = new Intent(this, TaskListActivity.class);
         taskIntent.putExtra("quest", selected);
+        taskIntent.putExtra("questId", selected.getId());
         startActivityForResult(taskIntent, REQUEST_CODE);
     }
 

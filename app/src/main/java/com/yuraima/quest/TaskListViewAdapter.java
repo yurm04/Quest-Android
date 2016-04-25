@@ -13,49 +13,48 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * Created by yestevez on 4/23/16.
+ * Created by yestevez on 4/24/16.
  */
-public class QuestListViewAdapter extends ArrayAdapter<Quest> {
-
-    final static String TAG = "QuestListViewAdapter";
+public class TaskListViewAdapter extends ArrayAdapter<Task> {
+    final static String TAG = "TaskListViewAdapter";
     Context context;
     int resource;
-    List<Quest> quests;
+    List<Task> quests;
 
-    public QuestListViewAdapter(Context context, int resource, List<Quest> objects) {
+    public TaskListViewAdapter(Context context, int resource, List<Task> objects) {
         super(context, resource, objects);
         this.resource = resource;
         this.context = context;
         this.quests = objects;
     }
 
-    private class QuestViewHolder {
+    private class TaskViewHolder {
         ImageView imageView;
         TextView mainText;
-        TextView taskCount;
+        TextView taskStatus;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        QuestViewHolder holder = null;
-        Quest quest = getItem(position);
+        TaskViewHolder holder = null;
+        Task task = getItem(position);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
             convertView = inflater.inflate(this.resource, parent, false);
-            holder = new QuestViewHolder();
+            holder = new TaskViewHolder();
             holder.mainText = (TextView) convertView.findViewById(R.id.task_main_text);
-            holder.taskCount = (TextView) convertView.findViewById(R.id.taskCount);
+            holder.taskStatus = (TextView) convertView.findViewById(R.id.task_status);
             holder.imageView = (ImageView) convertView.findViewById(R.id.task_icon);
             convertView.setTag(holder);
         } else {
-            holder = (QuestViewHolder) convertView.getTag();
+            holder = (TaskViewHolder) convertView.getTag();
         }
 
-        holder.mainText.setText(quest.name);
-        holder.taskCount.setText(quest.taskCount());
-        holder.imageView.setImageResource(quest.getIcon());
+        holder.mainText.setText(task.name);
+        holder.taskStatus.setText(task.getStatus());
+        holder.imageView.setImageResource(task.getIcon());
 
-        if (quest.isComplete()) {
+        if (task.isComplete()) {
             holder.mainText.setTextColor(ContextCompat.getColor(context, R.color.colorComplete));
         }
 
