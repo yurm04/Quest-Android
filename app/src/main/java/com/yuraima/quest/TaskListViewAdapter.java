@@ -33,6 +33,7 @@ public class TaskListViewAdapter extends ArrayAdapter<Task> {
     private class TaskViewHolder {
         ImageView imageView;
         TextView mainText;
+        TextView subText;
         TextView taskStatus;
     }
 
@@ -45,6 +46,7 @@ public class TaskListViewAdapter extends ArrayAdapter<Task> {
             convertView = inflater.inflate(this.resource, parent, false);
             holder = new TaskViewHolder();
             holder.mainText = (TextView) convertView.findViewById(R.id.task_main_text);
+            holder.subText = (TextView) convertView.findViewById(R.id.task_desc_sub);
             holder.taskStatus = (TextView) convertView.findViewById(R.id.task_status);
             holder.imageView = (ImageView) convertView.findViewById(R.id.task_icon);
             convertView.setTag(holder);
@@ -53,6 +55,7 @@ public class TaskListViewAdapter extends ArrayAdapter<Task> {
         }
 
         holder.mainText.setText(task.name);
+        holder.subText.setText(task.description);
         holder.taskStatus.setText(task.getStatus());
         holder.imageView.setImageResource(task.getIcon());
 

@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -25,6 +26,7 @@ public class TaskListActivity extends AppCompatActivity {
     TextView noTasksMsg;
     TextView noTasksSubMsg;
     TextView questName;
+    TextView questDescSub;
     long questId;
     ListView taskListView;
     TaskListViewAdapter taskListAdapter;
@@ -70,9 +72,11 @@ public class TaskListActivity extends AppCompatActivity {
         }
     }
 
-    protected void setQuestName(String name) {
+    protected void setQuestName(String name, String desc) {
         questName = (TextView) findViewById(R.id.questName);
+        questDescSub = (TextView) findViewById(R.id.questDescSub);
         questName.setText(name);
+        questDescSub.setText(desc);
     }
     protected boolean getTaskList() {
         getQuest();
@@ -99,15 +103,22 @@ public class TaskListActivity extends AppCompatActivity {
         taskListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Task task = taskListAdapter.getItem(position);
-                task.complete = true;
-                task.save();
-                getTaskList();
+                setTaskStatus(position);
                 return true;
             }
         });
 
         return true;
+    }
+
+    public void setTaskStatus(int position) {
+        Task task = taskListAdapter.getItem(position);
+        task.complete = !task.complete;
+        task.save();
+        init();
+        if (task.complete) {
+            toast("Task Completed!");
+        }
     }
 
     protected void showEmptyListMsg() {
@@ -130,7 +141,7 @@ public class TaskListActivity extends AppCompatActivity {
         this.questId = getIntent().getLongExtra("questId", 0);
         this.quest = Quest.findById(Quest.class, questId);
         Log.i(TAG, "quest name: " + quest.name);
-        setQuestName(quest.name);
+        setQuestName(quest.name, quest.description);
     }
 
     protected void addTask() {
@@ -209,5 +220,10 @@ public class TaskListActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void toast(String message) {
+        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+        toast.show();
     }
 }

@@ -18,6 +18,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.URI;
 import java.util.List;
 
 public class AddItemActivity extends AppCompatActivity {
@@ -196,42 +197,22 @@ public class AddItemActivity extends AppCompatActivity {
         return true;
     }
 
+
+
     protected void getFields() {
         nameField = (EditText) findViewById(R.id.editName);
         descField = (EditText) findViewById(R.id.editDesc);
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        if (requestCode == CALENDAR_REQUEST) {
-            if (resultCode == RESULT_OK) {  // request successful
-                Uri calendarUri = data.getData();  // location of data
-                String[] projection = {CalendarContract.EventDays.STARTDAY};
-
-                Cursor cursor = getContentResolver().query(calendarUri, projection, null, null, null);
-                cursor.moveToFirst();
-                // Retrieve phone number from the NUMBER column
-                int column = cursor.getColumnIndex(CalendarContract.EventDays.STARTDAY);
-                String eventDate = cursor.getString(column);
-
-                Context context = getApplicationContext();
-                CharSequence text = "Quest Date: " + eventDate;
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            }
-        }
-    }
-
     /**
-     * Event Listener to "Add Quest" button.
-     * Uses DB helper to add quest to DB.
-     * Creates toast to confirm added quest.
-     *
-     * @return success or failure to add new quest
+     * Event listener for button tap.  When button is tapped,
+     * the values of each field is obtained.  Each value is validated,
+     * if validation fails execution is terminated.  On validation pass,
+     * the desired activity (ADD or EDIT) is evaluated along with the desired
+     * item (QUEST or TASK).  The appropriate method is then called to add/edit
+     * a quest/task based on the fields that were grabbed from the fields.
+     * @return boolean pass or fail completion of add/edit action
      */
     private boolean addItemEventListener() {
 

@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -44,7 +45,7 @@ public class QuestListActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         /* Sets MainQuestActivity as default when the UP button is hit */
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         /* Instantiate double tap gesture detector for activity */
         this.detector = new GestureDetectorCompat(this, this);
@@ -116,10 +117,7 @@ public class QuestListActivity extends AppCompatActivity
         questListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Quest quest = adapter.getItem(position);
-                quest.complete = true;
-                quest.save();
-                getQuestList();
+                setQuestStatus(position);
                 return true;
             }
         });
@@ -131,6 +129,16 @@ public class QuestListActivity extends AppCompatActivity
         if (emptyMessage != null && emptyMessageSub != null) {
             emptyMessage.setVisibility(View.VISIBLE);
             emptyMessageSub.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void setQuestStatus(int position) {
+        Quest quest = adapter.getItem(position);
+        quest.complete = !quest.complete;
+        quest.save();
+        getQuestList();
+        if (quest.complete) {
+            toast("Quest Completed!");
         }
     }
 
@@ -149,6 +157,11 @@ public class QuestListActivity extends AppCompatActivity
         taskIntent.putExtra("quest", selected);
         taskIntent.putExtra("questId", selected.getId());
         startActivityForResult(taskIntent, REQUEST_CODE);
+    }
+
+    private void toast(String message) {
+        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     @Override

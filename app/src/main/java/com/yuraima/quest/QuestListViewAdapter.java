@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 /**
@@ -39,6 +41,7 @@ public class QuestListViewAdapter extends ArrayAdapter<Quest> {
     private class QuestViewHolder {
         ImageView imageView;
         TextView mainText;
+        TextView descText;
         TextView taskCount;
     }
 
@@ -57,6 +60,7 @@ public class QuestListViewAdapter extends ArrayAdapter<Quest> {
             holder = new QuestViewHolder();
             /* Get all of the UI views that are included in layout file */
             holder.mainText = (TextView) convertView.findViewById(R.id.task_main_text);
+            holder.descText = (TextView) convertView.findViewById(R.id.task_desc_text);
             holder.taskCount = (TextView) convertView.findViewById(R.id.taskCount);
             holder.imageView = (ImageView) convertView.findViewById(R.id.task_icon);
             convertView.setTag(holder);
@@ -66,6 +70,7 @@ public class QuestListViewAdapter extends ArrayAdapter<Quest> {
 
         // Set the values for each UI view
         holder.mainText.setText(quest.name);
+        holder.descText.setText(quest.description);
         holder.taskCount.setText(quest.taskCount());
         holder.imageView.setImageResource(quest.getIcon());
 

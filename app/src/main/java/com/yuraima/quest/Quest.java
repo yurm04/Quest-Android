@@ -11,6 +11,11 @@ import java.util.List;
 
 /**
  * Created by yestevez on 4/4/16.
+ * Sugar ORM dependency used as parent object.  Sugar ORM
+ * allows object to accomplish common CRUD and query operations
+ * via an easy to use API.
+ *
+ * http://satyan.github.io/sugar/
  */
 public class Quest extends SugarRecord
     implements Serializable {
